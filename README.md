@@ -220,16 +220,14 @@ function runMinimax(tempBoard, depth, isMaximizing) {
 
 Since this project uses native web elements, vanilla CSS, and the Web Audio API, **no build systems or local installations are required!**
 
-### Option A: Direct File Launch
-1. Open the directory `C:\Users\Soha\OneDrive\Documents\worksh\Dummy`
-2. Double-click `index.html` to open it directly in any modern web browser.
-
-### Option B: Local Web Server
-If you want hot-reloading or local testing, launch a server:
-```powershell
-python -m http.server 8000
-```
-Then visit `http://localhost:8000` in your web browser.
+### Running Locally
+To serve the project locally using a web server:
+1. Open your terminal in the project directory.
+2. Launch a server:
+   ```bash
+   python -m http.server 8000
+   ```
+3. Open `http://localhost:8000` in your web browser.
 
 ---
 
