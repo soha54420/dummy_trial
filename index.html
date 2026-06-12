@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Tic-Tac-Toe & AI Explainer</title>
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Animated Background Elements -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon"><i class="fa-solid fa-gamepad"></i></div>
+        <div>
+          <h1>NEON GRID</h1>
+          <p class="subtitle">Tic Tac Toe & Interactive AI Explainer</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="soundToggleBtn" class="action-btn" title="Toggle Sound">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+        <a href="#explainerSection" class="action-btn text-link">
+          <i class="fa-solid fa-graduation-cap"></i> <span>How it Works</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="game-layout">
+      <!-- GAME AREA -->
+      <section class="game-section glass-panel">
+        <!-- Scoreboard -->
+        <div class="scoreboard">
+          <div class="score-card player-x active" id="scoreCardX">
+            <span class="player-label"><i class="fa-solid fa-xmark"></i> PLAYER X</span>
+            <span class="score-value" id="scoreX">0</span>
+            <span class="turn-indicator">YOUR TURN</span>
+          </div>
+          <div class="score-card tie">
+            <span class="player-label"><i class="fa-solid fa-equals"></i> TIES</span>
+            <span class="score-value" id="scoreTies">0</span>
+          </div>
+          <div class="score-card player-o" id="scoreCardO">
+            <span class="player-label" id="playerOLabel"><i class="fa-regular fa-circle"></i> PLAYER O</span>
+            <span class="score-value" id="scoreO">0</span>
+            <span class="turn-indicator">TURN</span>
+          </div>
+        </div>
+
+        <!-- Mode & Difficulty Selectors -->
+        <div class="game-controls">
+          <div class="control-group">
+            <label for="gameMode"><i class="fa-solid fa-users"></i> Game Mode</label>
+            <div class="custom-select-wrapper">
+              <select id="gameMode">
+                <option value="pvp">Player vs Player (Local)</option>
+                <option value="ai" selected>Player vs AI (Computer)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="control-group" id="difficultyGroup">
+            <label for="difficulty"><i class="fa-solid fa-brain"></i> AI Intelligence</label>
+            <div class="custom-select-wrapper">
+              <select id="difficulty">
+                <option value="easy">Easy (Random)</option>
+                <option value="medium">Medium (Defensive)</option>
+                <option value="impossible" selected>Impossible (Minimax)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Interactive Game Board -->
+        <div class="board-wrapper">
+          <div class="board" id="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+          </div>
+          <div class="winning-line" id="winningLine"></div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button id="resetBoardBtn" class="primary-btn">
+            <i class="fa-solid fa-rotate-left"></i> Reset Match
+          </button>
+          <button id="resetScoresBtn" class="secondary-btn">
+            <i class="fa-solid fa-trash-can"></i> Clear Scores
+          </button>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE EXPLAINER DRAWER / SIDEBAR -->
+      <section class="explainer-section glass-panel" id="explainerSection">
+        <div class="explainer-header">
+          <h2><i class="fa-solid fa-graduation-cap"></i> Interactive Engine Lab</h2>
+          <p>Play matches to see dynamic code updates below in real-time!</p>
+        </div>
+
+        <!-- Tab Controls -->
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="tab-mapping">
+            <i class="fa-solid fa-table-cells"></i> Grid Mapping
+          </button>
+          <button class="tab-btn" data-tab="tab-win">
+            <i class="fa-solid fa-trophy"></i> Win Checker
+          </button>
+          <button class="tab-btn" data-tab="tab-minimax">
+            <i class="fa-solid fa-diagram-project"></i> Minimax AI
+          </button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="tab-content active" id="tab-mapping">
+          <h3>Representing the Board in Code</h3>
+          <p>
+            In a coding project, instead of using a complex 2D grid database, we map the 3x3 layout to a flat
+            <strong>1-Dimensional Array</strong> of size 9.
+          </p>
+
+          <!-- Visual Mapping Display -->
+          <div class="interactive-mapping">
+            <div class="mini-grid">
+              <div class="mini-cell" data-mini="0">0</div>
+              <div class="mini-cell" data-mini="1">1</div>
+              <div class="mini-cell" data-mini="2">2</div>
+              <div class="mini-cell" data-mini="3">3</div>
+              <div class="mini-cell" data-mini="4">4</div>
+              <div class="mini-cell" data-mini="5">5</div>
+              <div class="mini-cell" data-mini="6">6</div>
+              <div class="mini-cell" data-mini="7">7</div>
+              <div class="mini-cell" data-mini="8">8</div>
+            </div>
+
+            <div class="mapping-code">
+              <span class="code-label">Active State:</span>
+              <pre><code id="codeArrayDisplay">gameState = ["", "", "", "", "", "", "", "", ""]</code></pre>
+            </div>
+          </div>
+
+          <div class="info-tip">
+            <i class="fa-solid fa-info-circle"></i>
+            <span>Hover over cells on the main game board or play moves to see their index position update in the array
+              above!</span>
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-win">
+          <h3>Detecting a Winner</h3>
+          <p>
+            To evaluate a win, we scan the board state array across 8 hardcoded winning combinations. Hover over any
+            winning line to visualize it:
+          </p>
+
+          <div class="win-combos-container">
+            <div class="combo-category">
+              <h4>Rows</h4>
+              <div class="combo-badges">
+                <button class="combo-badge" data-combo="0,1,2">Row 1 [0,1,2]</button>
+                <button class="combo-badge" data-combo="3,4,5">Row 2 [3,4,5]</button>
+                <button class="combo-badge" data-combo="6,7,8">Row 3 [6,7,8]</button>
+              </div>
+            </div>
+            <div class="combo-category">
+              <h4>Columns</h4>
+              <div class="combo-badges">
+                <button class="combo-badge" data-combo="0,3,6">Col 1 [0,3,6]</button>
+                <button class="combo-badge" data-combo="1,4,7">Col 2 [1,4,7]</button>
+                <button class="combo-badge" data-combo="2,5,8">Col 3 [2,5,8]</button>
+              </div>
+            </div>
+            <div class="combo-category">
+              <h4>Diagonals</h4>
+              <div class="combo-badges">
+                <button class="combo-badge" data-combo="0,4,8">Diag 1 [0,4,8]</button>
+                <button class="combo-badge" data-combo="2,4,6">Diag 2 [2,4,6]</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-snippet-box">
+            <div class="snippet-header">JS Validation Code</div>
+            <pre><code>const WINNING_COMBINATIONS = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+  [0, 3, 6], [1, 4, 7], [2, 5, 8], // Cols
+  [0, 4, 8], [2, 4, 6]             // Diag
+];
+
+function checkWin() {
+  return WINNING_COMBINATIONS.some(combo => {
+    return combo.every(index => {
+      return gameState[index] === currentPlayer;
+    });
+  });
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-minimax">
+          <h3>The Minimax AI Decision Engine</h3>
+          <p>
+            The "Impossible" AI evaluates all possible future outcomes using a recursive <strong>Minimax</strong>
+            decision tree algorithm.
+          </p>
+
+          <div class="minimax-vis-box">
+            <div class="score-explain">
+              <span class="badge score-win">+10 (AI Win)</span>
+              <span class="badge score-tie">0 (Tie)</span>
+              <span class="badge score-loss">-10 (Human Win)</span>
+            </div>
+
+            <div class="algorithm-stepper">
+              <p class="step-text" id="aiDecisionText">Play a move to trigger AI calculations...</p>
+              <div class="calculated-scores" id="scoreBarChart">
+                <!-- Will be dynamically populated with score comparisons -->
+              </div>
+            </div>
+          </div>
+
+          <div class="code-snippet-box">
+            <div class="snippet-header">Minimax Logic Flow</div>
+            <pre><code>function minimax(board, depth, isMaximizing) {
+  let score = evaluateBoard(board);
+  if (score === 10) return score - depth; // AI wins
+  if (score === -10) return score + depth; // Player wins
+  if (!hasMovesLeft(board)) return 0; // Tie
+
+  if (isMaximizing) {
+    let best = -Infinity;
+    for (let cell of emptyCells(board)) {
+      board[cell] = 'O'; // Make move
+      best = Math.max(best, minimax(board, depth + 1, false));
+      board[cell] = '';  // Undo move
+    }
+    return best;
+  } else {
+    let best = Infinity;
+    for (let cell of emptyCells(board)) {
+      board[cell] = 'X'; // Make move
+      best = Math.min(best, minimax(board, depth + 1, true));
+      board[cell] = '';  // Undo move
+    }
+    return best;
+  }
+}</code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>&copy; 2026 Neon Grid Engine by sj . Designed for learning and git deployment.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
