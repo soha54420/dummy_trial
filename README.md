@@ -19,10 +19,6 @@
     <rect width="100%" height="100%" fill="url(#glow2)"/>
 
     <style>
-      @keyframes pulseGlow {
-        0%, 100% { filter: drop-shadow(0 0 3px var(--color)); opacity: 0.8; }
-        50% { filter: drop-shadow(0 0 10px var(--color)); opacity: 1; }
-      }
       .grid-line {
         stroke: #2b304c;
         stroke-width: 4;
@@ -30,18 +26,16 @@
       }
       .marker-x {
         stroke: #00f2fe;
-        --color: #00f2fe;
         stroke-width: 8;
         stroke-linecap: round;
-        animation: pulseGlow 2.5s infinite alternate;
+        filter: drop-shadow(0 0 5px #00f2fe);
       }
       .marker-o {
         stroke: #f35588;
-        --color: #f35588;
         stroke-width: 8;
         stroke-linecap: round;
         fill: none;
-        animation: pulseGlow 2.5s infinite alternate;
+        filter: drop-shadow(0 0 5px #f35588);
       }
       .title-text {
         fill: #ffffff;
@@ -72,19 +66,29 @@
       <line x1="10" y1="130" x2="190" y2="130" class="grid-line"/>
 
       <!-- X at 0,0 -->
-      <path d="M25,25 L55,55 M55,25 L25,55" class="marker-x"/>
+      <path d="M25,25 L55,55 M55,25 L25,55" class="marker-x">
+        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2.5s" repeatCount="indefinite" />
+      </path>
       <!-- O at 1,1 -->
-      <circle cx="100" cy="100" r="16" class="marker-o"/>
+      <circle cx="100" cy="100" r="16" class="marker-o">
+        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2.5s" repeatCount="indefinite" />
+      </circle>
       <!-- X at 2,2 -->
-      <path d="M145,145 L175,175 M175,145 L145,175" class="marker-x"/>
+      <path d="M145,145 L175,175 M175,145 L145,175" class="marker-x">
+        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2.5s" repeatCount="indefinite" />
+      </path>
       <!-- O at 0,2 -->
-      <circle cx="160" cy="40" r="16" class="marker-o"/>
+      <circle cx="160" cy="40" r="16" class="marker-o">
+        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2.5s" repeatCount="indefinite" />
+      </circle>
     </g>
 
     <!-- Right: Titles -->
     <text x="310" y="105" class="title-text">NEON GRID</text>
     <text x="310" y="135" class="subtitle-text">Tic-Tac-Toe &amp; Interactive AI Explainer</text>
-    <text x="310" y="165" class="active-text">⚡ NATIVE WEB AUDIO &amp; MINIMAX Decision Engine</text>
+    <text x="310" y="165" class="active-text">⚡ NATIVE WEB AUDIO &amp; MINIMAX Decision Engine
+      <animate attributeName="opacity" values="0.3; 1; 0.3" dur="2.5s" repeatCount="indefinite" />
+    </text>
   </svg>
 
   <p></p>
