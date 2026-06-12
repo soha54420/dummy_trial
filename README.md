@@ -6,11 +6,11 @@
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="100%" height="auto" style="background:#0b0d19; border-radius: 12px; font-family: 'Outfit', -apple-system, sans-serif;">
     <defs>
       <radialGradient id="glow1" cx="20%" cy="30%" r="50%">
-        <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.25"/>
+        <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.2"/>
         <stop offset="100%" stop-color="#0b0d19" stop-opacity="0"/>
       </radialGradient>
       <radialGradient id="glow2" cx="80%" cy="70%" r="50%">
-        <stop offset="0%" stop-color="#f35588" stop-opacity="0.25"/>
+        <stop offset="0%" stop-color="#f35588" stop-opacity="0.2"/>
         <stop offset="100%" stop-color="#0b0d19" stop-opacity="0"/>
       </radialGradient>
     </defs>
@@ -20,98 +20,68 @@
 
     <style>
       @keyframes pulseGlow {
-        0%, 100% { filter: drop-shadow(0 0 4px var(--glow)); opacity: 0.8; }
-        50% { filter: drop-shadow(0 0 12px var(--glow)); opacity: 1; }
-      }
-      @keyframes drawLine {
-        to { stroke-dashoffset: 0; }
+        0%, 100% { filter: drop-shadow(0 0 3px var(--color)); opacity: 0.8; }
+        50% { filter: drop-shadow(0 0 10px var(--color)); opacity: 1; }
       }
       .grid-line {
         stroke: #2b304c;
         stroke-width: 4;
         stroke-linecap: round;
-        stroke-dasharray: 200;
-        stroke-dashoffset: 200;
-        animation: drawLine 1.2s ease-out forwards;
       }
-      .line-1 { animation-delay: 0.1s; }
-      .line-2 { animation-delay: 0.3s; }
-      .line-3 { animation-delay: 0.5s; }
-      .line-4 { animation-delay: 0.7s; }
-
       .marker-x {
         stroke: #00f2fe;
-        --glow: #00f2fe;
+        --color: #00f2fe;
         stroke-width: 8;
         stroke-linecap: round;
-        stroke-dasharray: 100;
-        stroke-dashoffset: 100;
-        animation: drawLine 0.6s ease-out forwards, pulseGlow 2.5s infinite alternate;
+        animation: pulseGlow 2.5s infinite alternate;
       }
       .marker-o {
         stroke: #f35588;
-        --glow: #f35588;
+        --color: #f35588;
         stroke-width: 8;
         stroke-linecap: round;
         fill: none;
-        stroke-dasharray: 150;
-        stroke-dashoffset: 150;
-        animation: drawLine 0.6s ease-out forwards, pulseGlow 2.5s infinite alternate;
+        animation: pulseGlow 2.5s infinite alternate;
       }
-      .x-1 { animation-delay: 1.0s; }
-      .x-2 { animation-delay: 1.2s; }
-      .o-1 { animation-delay: 1.5s; }
-      .o-2 { animation-delay: 1.7s; }
-
       .title-text {
         fill: #ffffff;
         font-size: 42px;
         font-weight: 800;
         letter-spacing: 3px;
-        opacity: 0;
-        animation: fadeIn 0.8s ease-out forwards 0.3s;
       }
       .subtitle-text {
         fill: #a0aec0;
         font-size: 15px;
         font-weight: 300;
         letter-spacing: 1px;
-        opacity: 0;
-        animation: fadeIn 0.8s ease-out forwards 0.7s;
       }
       .active-text {
         fill: #00f2fe;
         font-size: 11px;
         font-weight: 600;
         letter-spacing: 2px;
-        opacity: 0;
-        animation: fadeIn 0.8s ease-out forwards 2.0s;
       }
-      @keyframes fadeIn {
-        to { opacity: 1; }
-      }
-    </g>
     </style>
 
-    <!-- Left: Animated Grid -->
+    <!-- Left: Tic-Tac-Toe Grid -->
     <g transform="translate(60, 25)">
       <!-- grid lines -->
-      <line x1="70" y1="10" x2="70" y2="170" class="grid-line line-1"/>
-      <line x1="130" y1="10" x2="130" y2="170" class="grid-line line-2"/>
-      <line x1="10" y1="70" x2="190" y2="70" class="grid-line line-3"/>
-      <line x1="10" y1="130" x2="190" y2="130" class="grid-line line-4"/>
+      <line x1="70" y1="10" x2="70" y2="170" class="grid-line"/>
+      <line x1="130" y1="10" x2="130" y2="170" class="grid-line"/>
+      <line x1="10" y1="70" x2="190" y2="70" class="grid-line"/>
+      <line x1="10" y1="130" x2="190" y2="130" class="grid-line"/>
 
       <!-- X at 0,0 -->
-      <path d="M25,25 L55,55 M55,25 L25,55" class="marker-x x-1"/>
+      <path d="M25,25 L55,55 M55,25 L25,55" class="marker-x"/>
       <!-- O at 1,1 -->
-      <circle cx="100" cy="100" r="16" class="marker-o o-1"/>
+      <circle cx="100" cy="100" r="16" class="marker-o"/>
       <!-- X at 2,2 -->
-      <path d="M145,145 L175,175 M175,145 L145,175" class="marker-x x-2"/>
+      <path d="M145,145 L175,175 M175,145 L145,175" class="marker-x"/>
       <!-- O at 0,2 -->
-      <circle cx="160" cy="40" r="16" class="marker-o o-2"/>
+      <circle cx="160" cy="40" r="16" class="marker-o"/>
     </g>
 
-    <!-- Right: Animated Titles -->
+    <!-- Right: Titles -->
     <text x="310" y="105" class="title-text">NEON GRID</text>
     <text x="310" y="135" class="subtitle-text">Tic-Tac-Toe &amp; Interactive AI Explainer</text>
     <text x="310" y="165" class="active-text">⚡ NATIVE WEB AUDIO &amp; MINIMAX Decision Engine</text>
