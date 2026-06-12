@@ -9,6 +9,18 @@
 
 A premium, modern, and highly interactive **Tic Tac Toe Web Application** featuring a glassmorphic HSL dark-mode theme, synthesized retro sound effects, a score tracker, and a real-time **Interactive Engine Lab** explaining underlying computer science concepts.
 
+> [!IMPORTANT]
+> 🚀 **Play it Live**: Check out the deployed application on Vercel at **[dummy-trial.vercel.app](https://dummy-trial.vercel.app/)**.
+
+### 🎮 Quick Start: How it Works
+1. **Choose your game mode**: Play locally with a friend (PvP) or challenge the AI (Easy, Medium, or Impossible difficulty).
+2. **Interact & Play**: Click a square to place your marker (`X` plays first, `O` follows).
+3. **Sync with the Engine Lab**: Watch the sidebar update in real-time:
+   * **Grid Mapping**: Displays the 3x3 layout mapped to a standard 1D array state in code.
+   * **Win Checker**: Visualizes the 8 checks performed by the validator to determine a victor.
+   * **Minimax Graph**: Inspects the evaluation scores calculated recursively by the AI decision tree.
+4. **Hear Dynamic Synth Audio**: Sounds are generated programmatically on-the-fly using the native browser **Web Audio API** (no external file assets needed!).
+
 ---
 
 ## ✨ Features
